@@ -3,7 +3,8 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const searchURL = BASE_URL + '/search/movie?' + API_KEY;
-const WATCH_MOVIE = 'https://2embed.org/embed/';
+const EMBED_URL = 'https://2embed.org/embed';
+// src="https://2embed.org/embed/movie?tmdb=${id}"
 const genres = [
     {
       "id": 28,
@@ -82,7 +83,32 @@ const genres = [
       "name": "Western"
     }
 ]
-const movies = []
+
+const embedMovie = (id) => `${EMBED_URL}/${id}`;
+const embedEpisode = (id, season, episode) =>
+  `${EMBED_URL}/${id}/${season}/${episode}`;
+
+const imageApi = {
+  originalImage: (imgPath) => `${IMG_URL}/original/${imgPath}`,
+  w500Image: (imgPath) => `${IMG_URL}/w500/${imgPath}`,
+  w200Image: (imgPath) => `${IMG_URL}/w200/${imgPath}`,
+};
+const category = {
+  movie: 'movie',
+  tv: 'tv',
+};
+const movieType = {
+  trending: 'trending',
+  upcoming: 'upcoming',
+  popular: 'popular',
+  top_rated: 'top_rated',
+};
+const tvType = {
+  trending: 'trending',
+  popular: 'popular',
+  top_rated: 'top_rated',
+  on_the_air: 'on_the_air',
+};
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
@@ -214,11 +240,11 @@ function showMovies(data){
             </div>
 
             <div class="overview">
-                <h3>Overview</h3>
+                <h3>${title}</h3>
                ${overview}
                <br/>
-               <button class="know-more" id="${id}">Trailer</button> 
-               <button class="watch" id="${id}">Watch Movie</button>
+               <button class="know-more" id="${id}">Watch Movie</button> 
+               <!--<button class="watch" id="${id}">Watch Movie</button>-->
             </div>
         
         `
@@ -252,7 +278,7 @@ function openNav(movie) {
           if(site == 'YouTube'){
               
             embed.push(`
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="1080" height="550" src="https://2embed.org//embed/movie?tmdb=${id}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           
           `)
 
@@ -285,8 +311,6 @@ function openNav(movie) {
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
 }
-
-
 
 var activeSlide = 0;
 var totalVideos = 0;
@@ -348,6 +372,7 @@ function getColor(vote){
         return 'red'
     }
 }
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
