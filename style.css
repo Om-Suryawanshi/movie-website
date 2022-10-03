@@ -19,10 +19,11 @@ header{
 }
   
 .btn{
+    display: inline-block;
     text-decoration: none;
     border-radius: 50px;
     padding: 5px;
-    float: right;
+    position: relative;
     margin-top: 10px;
     color: #fff !important;
     background: var(--secondary-color);
@@ -184,7 +185,7 @@ h1{
   /* Position the content inside the overlay */
 .overlay-content {
     position: relative;
-    top: 25%; /* 25% from the top */
+    top: 2%; /* 25% from the top */
     width: 100%; /* 100% width */
     text-align: center; /* Centered text/links */
     margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
@@ -208,7 +209,7 @@ h1{
   /* Position the close button (top right corner) */
 .overlay .closebtn {
     position: absolute;
-    top: 20px;
+    top: 0;
     right: 45px;
     font-size: 60px;
 }
