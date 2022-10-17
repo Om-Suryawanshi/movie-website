@@ -243,8 +243,8 @@ function showMovies(data){
                 <h3>${title}</h3>
                ${overview}
                <br/>
-               <button class="know-more" id="${id}">Watch Movie</button> 
-               <!--<button class="watch" id="${id}">Watch Movie</button>-->
+               <!--<button class="know-more" id="${id}">Trailer</button>-->
+               <button class="watch" id="${id}">Watch Movie</button>
             </div>
         
         `
@@ -278,7 +278,7 @@ function openNav(movie) {
           if(site == 'YouTube'){
               
             embed.push(`
-              <iframe width="1080" height="550" src="https://2embed.org//embed/movie?tmdb=${id}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1080" height="550" src="https://2embed.org//embed/movie?tmdb=${id}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           
           `)
 
@@ -311,7 +311,323 @@ function openNav(movie) {
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
 }
+/* My New Code 
+function Video({ src }) {
+  return (
+    <div
+      className="relative w-full duration-200 rounded-md overflow-hidden"
+      style={{ paddingBottom: '55%' }}
+    >
+      <iframe
+        title={src}
+        className="absolute top-0 left-0 w-full h-full z-10"
+        src={src}
+        frameBorder="0"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+function Overview({ title, overview }) {
+  const { category } = useParams();
 
+  const handleRenderStar = (n) => {
+    let i = 0;
+    let stars = [];
+    let surplus = n % 1;
+    n = Math.floor(n / 1);
+    while (i < n) {
+      stars.push(<StarSolid />);
+      i++;
+    }
+    if (surplus) {
+      stars.push(<StarHalf />);
+    }
+    n = 10 - n;
+    i = surplus ? 1 : 0;
+    while (i < n) {
+      i++;
+      stars.push(<Star />);
+    }
+    return stars;
+  };
+
+  const path =
+    category === 'movie' ? `/catalog/movie/${overview.id}` : `/catalog/tv/${overview.id}`;
+  // const pathPlay = category === 'movie' ? `/movie/${overview.id}/play` : `/tv/${overview.id}/play`;
+
+  return (
+    <div className="text-gray-300 relative z-10 space-y-3 pt-3">
+      <h1>
+        <Link to={path} className="text-2xl hover:text-red-600 duration-150">
+          {title}
+        </Link>
+      </h1>
+      {category === 'tv' && (
+        <h2 className="text-lg">Episode name:&nbsp;{overview.name || overview.title}</h2>
+      )}
+      <p>{overview.overview}</p>
+      <div>
+        Release Date:&nbsp;
+        {overview.first_air_date || overview.release_date || overview.air_date}
+      </div>
+      <div className="flex py-2 flex-wrap">
+        {overview.genres?.length > 0 &&
+          overview.genres.map((item, i) => (
+            <span
+              key={i}
+              className="px-3 py-2 rounded-3xl border-2 border-gray-300 cursor-pointer hover:text-gray-400 hover:border-gray-400 duration-300 whitespace-nowrap mb-3 mr-3"
+            >
+              {item.name}
+            </span>
+          ))}
+      </div>
+      <div className="flex">
+        {handleRenderStar(overview.vote_average)}
+        <span className="ml-2">({overview.vote_count}&nbsp;votes)</span>
+      </div>
+    </div>
+  );
+};
+
+function Preloader() {
+  return (
+    <div
+      className="preloader-layout fixed inset-0 z-50 bg-cover bg-top bg-no-repeat"
+      style={{ backgroundImage: `url(${background})` }}
+    >
+      <div className="preloader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  );
+};
+
+const tmdbApi = {
+  getTrendingList: (category, params) => {
+    const url = `trending/${category}/day`;
+    return axios.get(url, params);
+  },
+  getMoviesList: (type, params) => {
+    const url = `movie/${movieType[type]}`;
+    return axios.get(url, params);
+  },
+  getTvList: (type, params) => {
+    const url = `tv/${tvType[type]}`;
+    return axios.get(url, params);
+  },
+  getVideos: (cate, id) => {
+    const url = `${category[cate]}/${id}/videos`;
+    return axios.get(url, { params: {} });
+  },
+  search: (cate, params) => {
+    const url = `search/${category[cate]}`;
+    return axios.get(url, params);
+  },
+  detail: (cate, id, params) => {
+    const url = `${category[cate]}/${id}`;
+    return axios.get(url, params);
+  },
+  credits: (cate, id) => {
+    const url = `${category[cate]}/${id}/credits`;
+    return axios.get(url, { params: {} });
+  },
+  similar: (cate, id) => {
+    const url = `${category[cate]}/${id}/similar`;
+    return axios.get(url, { params: {} });
+  },
+  getTVSeasons: (id, seasonNumber) => {
+    const url = `tv/${id}/season/${seasonNumber}`;
+    return axios.get(url, { params: {} });
+  },
+};
+
+function Season({ season, handleUrl, id, background }) {
+  const episodeRef = useRef(null);
+  const navigate = useNavigate();
+  const { category } = useParams();
+  const [episodes, setEpisodes] = useState([]);
+
+  const handleSeason = () => {
+    if (category === 'movie') {
+      navigate(`/movie/${season.id}/play`);
+    } else {
+      episodeRef.current.classList.toggle('h-0');
+    }
+  };
+
+  const bgMovie = season.backdrop_path ? season.backdrop_path : season.poster_path;
+
+  useEffect(() => {
+    const fetchEpisode = async () => {
+      if (category !== 'tv') return;
+      try {
+        const response = await tmdbApi.getTVSeasons(id, season.season_number);
+        setEpisodes(response.episodes);
+      } catch (error) {}
+    };
+
+    fetchEpisode();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, season]);
+
+  return (
+    <div>
+      <div
+        onClick={handleSeason}
+        className="relative flex text-gray-300 bg-penetration-7 group cursor-pointer group"
+      >
+        <div className="overflow-hidden w-1/3">
+          <img
+            src={imageApi.w200Image(bgMovie ? bgMovie : background)}
+            alt=""
+            className="w-full transform duration-200 h-16 mt-812:h-20 object-cover group-hover:scale-110"
+          />
+        </div>
+
+        <div className="w-2/3">
+          <h2 className="flex items-center duration-200 group-hover:text-red-600 px-3 h-full">
+            {season.name || season.title}
+          </h2>
+        </div>
+
+        <div className="absolute top-1/2 transform -translate-y-1/2 right-3 flex items-center">
+          <svg
+            width="20"
+            height="20"
+            className="ml-0 transform duration-200 -translate-x-3 group-hover:translate-x-0"
+            viewBox="0 0 24 24"
+            style={{ fill: '#D1D5DB' }}
+          >
+            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+          </svg>
+        </div>
+      </div>
+      <div ref={episodeRef} className="h-0 overflow-hidden duration-300">
+        {episodes &&
+          episodes.map((episode) => (
+            <Episode
+              key={episode.id}
+              episode={episode}
+              background={background}
+              seasonNumber={season.season_number}
+              handleUrl={handleUrl}
+            />
+          ))}
+      </div>
+    </div>
+  );
+}
+
+function PlayMovie() {
+  const { category, id } = useParams();
+  const otherRef = useRef(null);
+  const [src, setSrc] = useState('');
+  const [title, setTitle] = useState([]);
+  const [seasons, setSeasons] = useState([]);
+  const [overview, setOverview] = useState({});
+  const [preloader, setPreloader] = useState(true);
+  const [background, setBackground] = useState('');
+  const [, setSearchParams] = useSearchParams();
+
+  const fetchMovie = async () => {
+    try {
+      const params = {};
+      const response = await tmdbApi.detail(category, id, { params });
+      if (category === 'tv') {
+        setSeasons(response.seasons);
+        setOverview(response);
+      } else {
+        setOverview(response);
+        const { results } = await tmdbApi.getTrendingList(category, {
+          params,
+        });
+        setSeasons(results);
+      }
+      const backgroundTemp = response.backdrop_path
+        ? response.backdrop_path
+        : response.poster_path;
+      setBackground(backgroundTemp);
+
+      const titleTemp = response.title ? response.title : response.name;
+      setTitle(titleTemp);
+      setPreloader(false);
+    } catch (error) {}
+  };
+
+  const handleUrl = (season = 1, episode = overview) => {
+    if (category === 'movie') return setSrc(embedMovie(id));
+
+    setOverview(episode);
+    setSrc(embedEpisode(id, season, episode.episode_number ? episode.episode_number : 1));
+    setSearchParams({ season, episode: episode.episode_number || 1 });
+
+    handleScrollToTop();
+  };
+
+  const handleBackground = (movie) => {
+    return movie.backdrop_path ? movie.backdrop_path : movie.poster_path;
+  };
+
+  useEffect(() => {
+    fetchMovie();
+    handleUrl();
+    handleScrollToTop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  if (preloader) return <Preloader />;
+
+  return (
+    <Page title={title}>
+      <div
+        className="bg__play w-full bg-cover bg-no-repeat bg-center pt-16 mt-812:pb-10"
+        style={{
+          backgroundImage: `url(${imageApi.originalImage(background)})`,
+        }}
+      >
+        <div className="w-full mt-812:px-0 px-3 mt-812:w-11/12 mx-auto">
+          <div className="flex mt-812:flex-row flex-col mt-812:space-x-5">
+            <div className="w-full mt-812:w-2/3 mb-5 mt-812:mb-0">
+              <Video src={src} />
+              <Overview title={title} overview={overview} />
+            </div>
+            <div className="w-full mt-812:w-1/3 z-10" ref={otherRef}>
+              <div className="text-gray-300 text-2xl mb-2">
+                {category === 'tv' ? 'Other Episodes' : 'Trending Movies'}
+              </div>
+              <div className="h-700 overflow-y-auto overflow-hidden rounded-md scroll__custom space-y-2">
+                {seasons &&
+                  seasons.map((season) => {
+                    return (
+                      <Season
+                        key={season.id}
+                        season={season}
+                        background={background || handleBackground(season)}
+                        handleUrl={handleUrl}
+                        category={category}
+                        id={id}
+                      />
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+          <div className="relative z-10 -mx-3">
+            <MovieList category={category} type="similar" title="Similar" id={id} />
+          </div>
+        </div>
+      </div>
+    </Page>
+  );
+}
+
+
+New Code End*/
 var activeSlide = 0;
 var totalVideos = 0;
 
