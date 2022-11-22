@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
 :root{
     --primary-color:#111111;
     --secondary-color:#081a35;
@@ -221,7 +225,7 @@ nav button {
     font-family: inherit;
     text-align: center;
     text-transform: uppercase;
-    width: 30rem;
+    width: 20rem;
 }
 
 .search:focus{
@@ -402,13 +406,32 @@ h1{
     font-size: 60px;
 }
   
+#iframeplayer {
+    display: block;
+    margin-bottom: 5px;
+    height: 600px;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+    background-color: #3a3a3a;
+}
+
   /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
+@media screen and (max-height: 700px) {
     .overlay a {font-size: 20px}
     .overlay .closebtn {
       font-size: 40px;
       top: 15px;
       right: 35px;
+    }
+/* 
+    .iframe {
+        width: 10%;
+        height: 10%;
+    } */
+
+    .search{
+        width: 100%;
     }
 }
 .embed.hide{
