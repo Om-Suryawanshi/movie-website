@@ -1,4 +1,4 @@
-const API_KEY = 'api_key=xxxxxxxxxxxxxxxxxxxxxxxxxx';
+const API_KEY = 'api_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //Add api key here 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
@@ -249,15 +249,6 @@ function showMovies(data) {
         `
     main.appendChild(movieEl)
 
-    // addEventListener('click', () => {
-    //   openNav(trailer)
-    // })
-
-    // document.getElementById(id).addEventListener('click', () => {
-    //   console.log(id)
-    //   openNav(trailer)
-    // })
-
     document.getElementById(id).addEventListener('click', () => {
       console.log(id)
       openNav(movie)
@@ -280,22 +271,11 @@ function openNav(movie) {
       if (videoData.results.length > 0) {
         var embed = [];
         console.log(embed);
-        // document.getElementById("overlay-content").innerHTML = `<iframe id="iframeplayer" src="https://2embed.org//embed/movie?tmdb=${id}"  class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-        // console.log(videoData.results);
-        // videoData.results.forEach(video => {
-        //   let { site } = video
-        //   // let embed = [1];
-
-        //   if (site == 'YouTube') {
-
         embed.push(`
 
             <iframe id="iframeplayer" src="https://2embed.org//embed/movie?tmdb=${id}"  class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
           `)
-        //   }
-        // })
-
         var content = `
         <h1 class="no-results">${movie.original_title}</h1>
         <br/>
@@ -336,27 +316,6 @@ function showVideos() {
   })
 }
 
-// const leftArrow = document.getElementById('left-arrow')
-// const rightArrow = document.getElementById('right-arrow')
-
-// leftArrow.addEventListener('click', () => {
-//       if(activeSlide > 0){
-//         activeSlide--;
-//       }else{
-//         activeSlide = totalVideos -1;
-//       }
-
-//       showVideos()
-//     })
-
-// rightArrow.addEventListener('click', () => {
-//       if(activeSlide < (totalVideos -1)){
-//         activeSlide++;
-//       }else{
-//         activeSlide = 0;
-//       }
-//       showVideos()
-//     })
 
 function getColor(vote) {
   if (vote >= 8) {
