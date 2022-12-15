@@ -325,7 +325,7 @@ h1{
     color: #eee;
 }
 .page{
-    /*padding: 100px;*/
+    /* padding: 100px; */
     cursor: pointer;
 }
 .page.disabled{
@@ -417,7 +417,7 @@ h1{
 }
 
   /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 700px) {
+@media screen and (max-width: 500px) {
     .overlay a {font-size: 20px}
     .overlay .closebtn {
       font-size: 40px;
@@ -432,6 +432,16 @@ h1{
 
     .search{
         width: 100%;
+    }
+
+    #iframeplayer {
+        display: block;
+        margin-bottom: 5px;
+        height: 55%;
+        width: 100%;
+        border: none;
+        overflow: hidden;
+        background-color: #3a3a3a;
     }
 }
 .embed.hide{
