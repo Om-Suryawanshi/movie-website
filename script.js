@@ -1,4 +1,4 @@
-const API_KEY = 'api_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //Add api key here 
+const API_KEY = 'api_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //Add api key here 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
@@ -84,31 +84,6 @@ const genres = [
   }
 ]
 
-const embedMovie = (id) => `${EMBED_URL}/${id}`;
-const embedEpisode = (id, season, episode) =>
-  `${EMBED_URL}/${id}/${season}/${episode}`;
-
-const imageApi = {
-  originalImage: (imgPath) => `${IMG_URL}/original/${imgPath}`,
-  w500Image: (imgPath) => `${IMG_URL}/w500/${imgPath}`,
-  w200Image: (imgPath) => `${IMG_URL}/w200/${imgPath}`,
-};
-const category = {
-  movie: 'movie',
-  tv: 'tv',
-};
-const movieType = {
-  trending: 'trending',
-  upcoming: 'upcoming',
-  popular: 'popular',
-  top_rated: 'top_rated',
-};
-const tvType = {
-  trending: 'trending',
-  popular: 'popular',
-  top_rated: 'top_rated',
-  on_the_air: 'on_the_air',
-};
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
