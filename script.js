@@ -1,10 +1,10 @@
-const API_KEY = 'api_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //Add api key here 
+const API_KEY = 'api_key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //Add api key here 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const searchURL = BASE_URL + '/search/movie?' + API_KEY;
-const EMBED_URL = 'https://2embed.org/embed';
-// src="https://2embed.org/embed/movie?tmdb=${id}"
+const EMBED_URL = 'https:/2embed.to/embed';
+// src="https://2embed.to/embed/movie?tmdb=${id}"
 const genres = [
   {
     "id": 28,
@@ -242,13 +242,12 @@ function openNav(movie) {
     console.log(videoData);
     if (videoData) {
       document.getElementById("myNav").style.width = "100%";
-      // document.getElementById("overlay-content").innerHTML = `<iframe id="iframeplayer" src="https://2embed.org//embed/movie?tmdb=${id}"  class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
       if (videoData.results.length > 0) {
         var embed = [];
         console.log(embed);
         embed.push(`
 
-            <iframe id="iframeplayer" src="https://2embed.org//embed/movie?tmdb=${id}"  class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="iframeplayer" src="https://www.2embed.to/embed/tmdb/movie?id=${id}"  class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
           `)
         var content = `
