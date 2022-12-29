@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
-*{
+
+* {
     box-sizing: border-box;
 }
 
-body {
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-}
-
-:root{
-    --primary-color:#111111;
-    --secondary-color:#081a35;
+:root {
+    --primary-color: #111111;
+    --secondary-color: #081a35;
     --color-primary-light: hsl(242, 91%, 69, 18%);
     --color-primary-variant: #5854c7;
     --color-red: #da0f3f;
@@ -36,14 +33,14 @@ body {
     --card-border-radius-5: 5rem;
 }
 
-body{
+body {
     background-color: var(--primary-color);
     font-family: 'Poppins', 'sans-serif';
     margin: 0;
 }
 
 
-header{
+header {
     padding: 1rem;
     display: flex;
     justify-content: center;
@@ -55,19 +52,19 @@ header{
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
     border-radius: 5px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: rgb(42, 42, 42);
     border-radius: 5px;
-  }
+}
 
 
 * {
@@ -91,132 +88,9 @@ section {
     margin-top: 3rem;
     width: 100vw;
 }
-/* 
-.search__bar {
-    margin-top: 7rem;
-}
 
-.search__bar-container {
-    position: relative;
-    width: 30rem;
-    background: var(--color-gray-900);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-    padding: 0.6rem 1rem;
-    border-radius: var(--card-border-radius-2);
-    color: var(--color-gray-300);
-}
-
-.search__bar-container > div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-
-}
-
-.search__bar input {
-    background: transparent;
-    margin-left: 0.7rem;
-    padding: 0.5rem 0;
-    width: 100%;
-}
-
-.search__bar input::placeholder {
-    color: var(--color-gray-300);
-}
-
- */
-.btn {
-    display: inline-block;
-    width: fit-content;
-    padding: 0.6rem 1.2rem;
-    background-color: var(--color-primary);
-    border-radius: var(--card-border-radius-2);
-    cursor: pointer;
-    transition: var(--transition);
-    color: white;
-}
-
-nav {
-    background: var(--color-primary);
-    width: 100vw;
-    height: 4.5rem;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-    background: var(--secondary-color);
-}
-
-nav button {
-    display: none;
-}
-
-.nav__container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 0.3rem solid var(--color-bg);
-}
-
-.nav__logo {
-    font-weight: 600;
-    font-size: 1.2rem;
-}
-
-.nav__items {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-}
-
-.nav__profile {
-    position: relative;
-    cursor: pointer;
-}
-
-.nav__profile ul {
-    position: absolute;
-    top: 125%;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 3rem 3rem rgba(0, 0, 0, 0.4);
-    visibility: hidden;
-    opacity: 0;
-    transition: var(--transition);
-}
-
-
-  
-
-
-.btn{
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 50px;
-    padding: 5px;
-    position: relative;
-    margin-top: 10px;
-    color: #fff !important;
-    background: var(--secondary-color);
-    font-family: inherit;
-    transform: translateX(-2300%);
-}
-
-
-.search{
-    background-color: var(--secondary-color)!important;
+.search {
+    background-color: var(--secondary-color) !important;
     border: 2px solid var(--primary-color);
     padding: 0.5rem 1rem;
     border-radius: 15px;
@@ -228,36 +102,41 @@ nav button {
     width: 20rem;
 }
 
-.search:focus{
+.search:focus {
     outline: 0;
     background-color: var(--primary-color);
 }
-.search::placeholder{
+
+.search::placeholder {
     color: #ffffff;
 }
 
 
-main{
+main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-h1{
+
+h1 {
     color: #eee;
 }
-.movie{
+
+.movie {
     width: 300px;
     margin: 1rem;
     border-radius: 3px;
-    box-shadow: 0.2px 4px 5px rgba(0,0,0,0.1);
+    box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);
     background-color: var(--secondary-color);
     position: relative;
     overflow: hidden;
 }
-.movie img{
+
+.movie img {
     width: 100%;
 }
-.movie-info{
+
+.movie-info {
     color: #eee;
     display: flex;
     align-items: center;
@@ -265,25 +144,31 @@ h1{
     padding: 0.5rem 1rem 1rem;
     letter-spacing: 0.5px;
 }
-.movie-info h3{
+
+.movie-info h3 {
     color: #eee;
 }
-.movie-info span{
+
+.movie-info span {
     background-color: var(--primary-color);
     padding: 0.25rem 0.5rem;
-    border-radius: 3px; 
+    border-radius: 3px;
     font-weight: bold;
 }
-.movie-info span.green{
+
+.movie-info span.green {
     color: lightgreen;
 }
-.movie-info span.orange{
+
+.movie-info span.orange {
     color: orange;
 }
-.movie-info span.red{
+
+.movie-info span.red {
     color: red;
 }
-.overview{
+
+.overview {
     position: absolute;
     left: 0;
     right: 0;
@@ -294,10 +179,12 @@ h1{
     transform: translateY(101%);
     transition: transform 0.3s ease-in;
 }
-.movie:hover .overview{
+
+.movie:hover .overview {
     transform: translateY(0);
 }
-#tags{
+
+#tags {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
@@ -305,7 +192,8 @@ h1{
     align-items: center;
     margin: 10px auto;
 }
-.tag{
+
+.tag {
     color: white;
     padding: 10px 15px;
     background-color: rgb(96, 62, 0);
@@ -314,40 +202,36 @@ h1{
     display: inline-block;
     cursor: pointer;
 }
-.tag.highlight{
+
+.tag.highlight {
     color: rgb(177, 115, 0);
 }
-.pagination{
+
+.pagination {
     display: flex;
     margin: 10px 30px;
     align-items: center;
     justify-content: center;
     color: #eee;
 }
-.page{
+
+.page {
     /* padding: 100px; */
     cursor: pointer;
 }
-.page.disabled{
+
+.page.disabled {
     cursor: not-allowed;
     color: gray;
 }
-.current{
+
+.current {
     padding: 20px;
     font-size: 20px;
     font-weight: 600;
 }
-.know-more{
-    border: 0;
-    padding: 10px 20px;
-    border-radius: 50px;
-    background-color: rgb(96, 62, 0);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 5px;
-}
-.watch{
+
+.know-more {
     border: 0;
     padding: 10px 20px;
     border-radius: 50px;
@@ -358,54 +242,78 @@ h1{
     margin-top: 5px;
 }
 
-/* Youtube card css */
+.watch {
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: rgb(96, 62, 0);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Iframe card css */
 /* The Overlay (background) */
 .overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
     height: 100%;
     width: 0;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    background-color: rgb(0, 0, 0);
+    /* Black fallback color */
+    background-color: rgba(0, 0, 0, 1);
+    /* Black w/opacity */
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
-  
-  /* Position the content inside the overlay */
+
+/* Position the content inside the overlay */
 .overlay-content {
     position: relative;
-    top: 2%; /* 25% from the top */
-    width: 100%; /* 100% width */
-    text-align: center; /* Centered text/links */
-    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+    top: 2%;
+    /* 25% from the top */
+    width: 100%;
+    /* 100% width */
+    text-align: center;
+    /* Centered text/links */
+    margin-top: 30px;
+    /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
-  
-  /* The navigation links inside the overlay */
+
+/* The navigation links inside the overlay */
 .overlay a {
     padding: 8px;
     text-decoration: none;
     font-size: 36px;
     color: #818181;
-    display: block; /* Display block instead of inline */
-    transition: 0.3s; /* Transition effects on hover (color) */
+    display: block;
+    /* Display block instead of inline */
+    transition: 0.3s;
+    /* Transition effects on hover (color) */
 }
-  
-  /* When you mouse over the navigation links, change their color */
-.overlay a:hover, .overlay a:focus {
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover,
+.overlay a:focus {
     color: #f1f1f1;
 }
-  
-  /* Position the close button (top right corner) */
+
+/* Position the close button (top right corner) */
 .overlay .closebtn {
     position: absolute;
     top: 0;
     right: 45px;
     font-size: 60px;
 }
-  
+
 #iframeplayer {
     display: block;
     margin-bottom: 5px;
@@ -416,21 +324,19 @@ h1{
     background-color: #3a3a3a;
 }
 
-  /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 @media screen and (max-width: 500px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-      font-size: 40px;
-      top: 15px;
-      right: 35px;
+    .overlay a {
+        font-size: 20px
     }
-/* 
-    .iframe {
-        width: 10%;
-        height: 10%;
-    } */
 
-    .search{
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+
+    .search {
         width: 100%;
     }
 
@@ -444,50 +350,34 @@ h1{
         background-color: #3a3a3a;
     }
 }
-.embed.hide{
+
+.embed.hide {
     display: none;
 }
-.embed.show{
+
+.embed.show {
     display: inline-block;
 }
 
-.arrow{
+.arrow {
     position: absolute;
     font-size: 40px;
 }
 
-.aarrow.left-arrow{
-    top:50%;
-    left:5%;
+.aarrow.left-arrow {
+    top: 50%;
+    left: 5%;
     transform: translateY(-50%);
     display: none;
 }
 
 
-.aarrow.right-arrow{
-  top:50%;
-  transform: translateY(-50%);
-  right:5%;
-  display: none;
+.aarrow.right-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5%;
+    display: none;
 }
-
-/*.dots{
-    margin-top: 30px;
-}
-  
-.dots .dot {
-    padding: 5px 15px;
-    border-radius: 50%;
-    border: 5px solid var(--secondary-color);
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    margin: 5px;
-}
-  
-.dots .dot.active{
-    border-color: orange;
-}*/
 
 
 /*footer*/
@@ -518,7 +408,7 @@ footer {
     justify-content: center;
     padding-top: 0.4rem;
     color: var(--color-white);
-    transition:  var(--transition);
+    transition: var(--transition);
 }
 
 .footer__socials a:hover {
@@ -545,7 +435,7 @@ footer ul li {
     padding: 0.4rem 0;
 }
 
-footer ul a{
+footer ul a {
     opacity: 0.75;
     color: var(--color-primary-variant);
     transition: var(--transition);
@@ -563,4 +453,3 @@ footer ul a:hover {
     margin-top: 4rem;
     text-align: center;
 }
-
